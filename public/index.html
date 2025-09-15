@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gemini Flash API Frontend</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="dashboard">
+    <aside class="sidebar">
+      <h1>Gemini Flash API</h1>
+      <nav>
+        <button class="nav-btn" data-route="/text">Text</button>
+        <button class="nav-btn" data-route="/image">Image</button>
+        <button class="nav-btn" data-route="/document">Document</button>
+        <button class="nav-btn" data-route="/audio">Audio</button>
+      </nav>
+    </aside>
+    <main class="main-content">
+      <section id="view-text" class="view-section">
+        <form id="textForm">
+          <h2>Generate Text</h2>
+          <input type="text" id="textPrompt" placeholder="Enter your prompt..." required />
+          <button type="submit">Generate</button>
+          <div id="textResult" class="result"></div>
+        </form>
+      </section>
+      <section id="view-image" class="view-section" style="display:none">
+        <form id="imageForm" enctype="multipart/form-data">
+          <h2>Generate from Image</h2>
+          <input type="file" id="imageInput" accept="image/*" required />
+          <input type="text" id="imagePrompt" placeholder="Prompt (optional)" />
+          <button type="submit">Generate</button>
+          <div id="imageResult" class="result"></div>
+        </form>
+      </section>
+      <section id="view-document" class="view-section" style="display:none">
+        <form id="documentForm" enctype="multipart/form-data">
+          <h2>Analyze Document</h2>
+          <input type="file" id="documentInput" accept=".pdf,.doc,.docx,.txt" required />
+          <button type="submit">Analyze</button>
+          <div id="documentResult" class="result markdown"></div>
+        </form>
+      </section>
+      <section id="view-audio" class="view-section" style="display:none">
+        <form id="audioForm" enctype="multipart/form-data">
+          <h2>Analyze Audio</h2>
+          <input type="file" id="audioInput" accept="audio/*" required />
+          <button type="submit">Analyze</button>
+          <div id="audioResult" class="result"></div>
+        </form>
+      </section>
+    </main>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

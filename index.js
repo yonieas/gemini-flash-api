@@ -6,8 +6,19 @@ const path = require('path');
 const {GoogleGenerativeAI} = require('@google/generative-ai');
 
 dotenv.config();
+
 const app = express();
 app.use(express.json());
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Serve index.html for dashboard routes for client-side routing
+const dashboardRoutes = ['/text', '/image', '/document', '/audio'];
+dashboardRoutes.forEach(route => {
+  app.get(route, (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  });
+});
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const model = genAI.getGenerativeModel({model:'models/gemini-2.0-flash'});
