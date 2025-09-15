@@ -45,7 +45,11 @@ document.getElementById('textForm').onsubmit = async function(e) {
     body: JSON.stringify({prompt})
   });
   const data = await res.json();
-  resultDiv.textContent = data.output || data.error || 'No response';
+  if (data.output) {
+    resultDiv.innerHTML = marked.parse(data.output);
+  } else {
+    resultDiv.textContent = data.error || 'No response';
+  }
 };
 
 document.getElementById('imageForm').onsubmit = async function(e) {
@@ -94,5 +98,9 @@ document.getElementById('audioForm').onsubmit = async function(e) {
     body: formData
   });
   const data = await res.json();
-  resultDiv.textContent = data.output || data.error || 'No response';
+  if (data.output) {
+    resultDiv.innerHTML = marked.parse(data.output);
+  } else {
+    resultDiv.textContent = data.error || 'No response';
+  }
 };
